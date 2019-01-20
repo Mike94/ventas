@@ -1,8 +1,10 @@
 package com.venta.servicios;
 
 import com.venta.proy.Categoria;
+import com.venta.proy.Cliente;
 import com.venta.proy.Producto;
 import com.venta.repositorios.CategoriaRepository;
+import com.venta.repositorios.ClienteRepository;
 import com.venta.repositorios.ProductoRepository;
 
 public interface ServicioVenta {
@@ -14,6 +16,10 @@ public interface ServicioVenta {
 	CategoriaRepository getRepocategoria();
 
 	void setRepocategoria(CategoriaRepository repocategoria);
+	
+	ClienteRepository getRepocliente();
+
+	void setRepocliente(ClienteRepository repocliente);
 
 	Producto findOneProd(Integer id);
 
@@ -30,5 +36,13 @@ public interface ServicioVenta {
 	void saveCat(Categoria categoria);
 
 	void deleteCat(Categoria categoria);
+	
+	Cliente findOneCli(Integer id);
+
+	Iterable<Cliente> findAllCli();
+
+	void saveCli(Cliente cliente);
+
+	void deleteCli(Cliente cliente);
 
 }

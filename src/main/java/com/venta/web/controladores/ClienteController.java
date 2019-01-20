@@ -27,7 +27,7 @@ public class ClienteController {
 		//Envia a la vista es decir a la plantilla todas los Clientes
 		modelo.addAttribute("cliente", servicio.findAllCat());
 		
-		//cat-index.html en la carpeta categoria
+		//cat-index.html en la carpeta cliente
 		return "cliente/cli-index";
 	}
 	
