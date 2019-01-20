@@ -16,6 +16,8 @@ public class ServicioVentaJPA implements ServicioVenta {
 	private ProductoRepository repoproducto;
 	@Autowired
 	private CategoriaRepository repocategoria;
+	@Autowired
+	private ClienteRepository repocliente;
 
 	
 	public ProductoRepository getRepoproducto() {
