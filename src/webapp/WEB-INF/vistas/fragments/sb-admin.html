@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
 <head>
  <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -30,6 +29,7 @@
             border-bottom-style: none;
         }
     </style> 
+    <title data-th-text="Titulo">Proyecto de la Maestria SPRING</title>
 </head>
 
 <body>
@@ -68,7 +68,7 @@
                        <a th:href="@{'/producto/index'}"><i class="fa fa-tasks fa-fw"></i> Productos</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-user fa-fw"></i>Clientes</a>
+                        <a th:href="@{'/cliente/index'}"><i class="fa fa-user fa-fw"></i>Clientes</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-gears fa-fw"></i>Ventas<span class="fa arrow"></span></a>
@@ -87,7 +87,7 @@
                         <a href="/trade/details"><i class="fa fa-tachometer fa-fw"></i>Cuentas<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Usuarios</a>
+                                <a th:href="@{'/user/index'}">Usuarios</a>
                             </li>
                             <li>
                                 <a href="#">Fills</a>

@@ -1,8 +1,6 @@
 package com.venta.test;
 
-
-
-import org.junit.*;
+import org.junit.Test;
 
 import com.venta.proy.Categoria;
 import com.venta.proy.Producto;
