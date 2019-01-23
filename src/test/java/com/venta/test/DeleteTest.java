@@ -6,8 +6,7 @@ import com.venta.proy.Categoria;
 import com.venta.proy.Producto;
 
 public class DeleteTest extends JPAUnitTest{
-	
-	
+		
 	@Test 
 	public void eliminar() {
 		

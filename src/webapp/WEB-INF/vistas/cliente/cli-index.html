@@ -71,16 +71,18 @@
 												<tr>
 													<th width="10%">Codigo</th>
 													<th width="60%">Nombres y Apellidos</th>
+													<th width="40%">Direccion</th>
 													<th width="30%">DNI</th>
+													<th width="30%">Control</th>
 												</tr>
 											</thead>
 
 											<tbody>
-
 												<tr th:each="cliente : ${clientes}">
 													<td th:text="${cliente.id}"></td>
-													<td th:text="${cliente.denominacion}"></td>
-
+													<td th:text="${cliente.nombres+ ' '+ cliente.apellidos}"></td>
+													<td th:text="${cliente.direccion}"></td>
+													<td th:text="${cliente.dni}"></td>
 
 													<td class="pad-no">
 														<div class="form-group">

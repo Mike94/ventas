@@ -7,7 +7,9 @@
 	<persistence-unit name="venta">
 	  <class>com.venta.proy.Categoria</class>
 	  <class>com.venta.proy.Producto</class>
-	  <class></class>
+	  <class>com.venta.proy.Cliente</class>
+	  <class>com.venta.proy.Factura</class>
+	  
 		<properties>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect"

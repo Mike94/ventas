@@ -19,6 +19,7 @@ public class Factura {
 	private int id;
 	private String num_factura;
 	private Date fecha;
+	private int estado;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="cliente_id")
@@ -48,6 +49,14 @@ public class Factura {
 		this.fecha = fecha;
 	}
 
+	public int isEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -56,16 +65,18 @@ public class Factura {
 		this.cliente = cliente;
 	}
 
-	public Factura(String num_factura, Date fecha, Cliente cliente) {
+	public Factura(String num_factura, Date fecha, int estado, Cliente cliente) {
 		super();
 		this.num_factura = num_factura;
 		this.fecha = fecha;
+		this.estado = estado;
 		this.cliente = cliente;
 	}
 
-	public Factura(String num_factura, Date fecha) {
+	public Factura(String num_factura, Date fecha, int estado) {
 		super();
 		this.num_factura = num_factura;
+		this.estado = estado;
 		this.fecha = fecha;
 	}
 
@@ -83,6 +94,7 @@ public class Factura {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
+		result = prime * result + estado;
 		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((num_factura == null) ? 0 : num_factura.hashCode());
@@ -103,6 +115,8 @@ public class Factura {
 				return false;
 		} else if (!cliente.equals(other.cliente))
 			return false;
+		if (estado != other.estado)
+			return false;
 		if (fecha == null) {
 			if (other.fecha != null)
 				return false;
@@ -117,6 +131,8 @@ public class Factura {
 			return false;
 		return true;
 	}
+
+		
 	
 	
 }

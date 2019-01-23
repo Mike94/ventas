@@ -21,8 +21,6 @@ public class JPAUnitTest {
 
 	@Before
 	public void setup() {
-	
-		
 		em = emf.createEntityManager();
 	}
 
@@ -30,12 +28,10 @@ public class JPAUnitTest {
 	public void tearDown() {
 		em.clear();
 		em.close();
-	
 	}
 
 	@AfterClass
 	public static void tearDownStatic() {
-		
 		emf.close();
 	}
 }

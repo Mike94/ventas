@@ -24,10 +24,10 @@ public class ClienteController {
 	@RequestMapping("/index")
 	public String lista(Model modelo) {
 		
-		//Envia a la vista es decir a la plantilla todas los Clientes
-		modelo.addAttribute("cliente", servicio.findAllCat());
+		//Envia a la vista es decir a la plantilla todos los Clientes
+		modelo.addAttribute("clientes", servicio.findAllCli());
 		
-		//cat-index.html en la carpeta cliente
+		//cli-index.html en la carpeta cliente
 		return "cliente/cli-index";
 	}
 	

@@ -23,9 +23,7 @@ public class Producto {
 	//Uno a uno
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="categoria_id", nullable = false)
-	
-	private Categoria categoria;
-	
+	private Categoria categoria;	
 	
 	
 	public Producto(String nombre, int stock, Categoria categoria) {

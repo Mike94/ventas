@@ -10,8 +10,6 @@ public class ServicioProducto {
 	ProductoRepositoryJPA repoprod;
 	CategoriaRepositoryJPA repocat;
 	ServicioVentaJPA servprod;
-	
-	//NoticiaRepositoryJPA repositorio;
 		
 		@Before
 		public void setup() {
@@ -20,11 +18,8 @@ public class ServicioProducto {
 			repocat= new CategoriaRepositoryJPA();
 			servprod= new ServicioVentaJPA();
 		}
-		
-		
-			
-			
-		}
+					
+}
 		
 
 

@@ -25,7 +25,7 @@ public class CategoriaController {
 	public String lista(Model modelo) {
 		
 		//Envia a la vista es decir a la plantilla todas las Categorias
-		modelo.addAttribute("categoria", servicio.findAllCat());
+		modelo.addAttribute("categorias", servicio.findAllCat());
 		
 		//cat-index.html en la carpeta categoria
 		return "categoria/cat-index";
