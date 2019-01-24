@@ -23,7 +23,6 @@ public class CategoriaController {
 	
 	@RequestMapping("/index")
 	public String lista(Model modelo) {
-		
 		//Envia a la vista es decir a la plantilla todas las Categorias
 		modelo.addAttribute("categorias", servicio.findAllCat());
 		
@@ -38,25 +37,37 @@ public class CategoriaController {
 	
 	}
 	
-	
-	// ya tenemos el objeto  categoria lleno con los datos del formulario
+	// Ya tenemos el objeto  categoria lleno con los datos del formulario
 	@RequestMapping(value="/insertarCategoria",method=RequestMethod.POST)
 	public String insertarCategoria( @Valid @ModelAttribute Categoria categoria, BindingResult validacion, Model modelo) {
 		if (validacion.hasErrors()) {
 			return "categoria/cat-new";
 		}else {
 			servicio.saveCat(categoria);
-			modelo.addAttribute("categorias", servicio.findAllCat());
-			return "categoria/cat-index";
-		}
-			
+			return "redirect:/categoria/index";
+		}			
 	}
+	
+	@RequestMapping("/editCategoria")
+	public String editCategoria(@RequestParam("clave") Integer id, Model modelo) {
+		modelo.addAttribute("categoria", servicio.findOneCat(id));
+		return "categoria/cat-edit";
+	}
+	
+	@RequestMapping(value="/updateCategoria", method=RequestMethod.POST)
+	public String updateCategoria(@Valid @ModelAttribute Categoria categoria, BindingResult validacion, Model modelo) {
+		if (validacion.hasErrors()) {
+			return "categoria/edit";
+		} else {
+			servicio.updateCat(categoria);
+			return "redirect:/categoria/index";
+		}		
+	}
+	
 	@RequestMapping("/borrarCategoria")
 	public String borrarCategoria(@RequestParam("clave") Integer id, Model modelo) {
 		servicio.deleteCat(new Categoria(id));
-		modelo.addAttribute("categorias", servicio.findAllCat());
-		return "categoria/cat-index";
-		
+		return "redirect:/categoria/index";		
 	}
 }
 

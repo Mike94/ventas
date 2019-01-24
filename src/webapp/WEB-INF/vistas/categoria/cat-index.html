@@ -84,9 +84,15 @@
 
 													<td class="pad-no">
 														<div class="form-group">
-															<a th:href="@{borrarCategoria(clave=${categoria.id})}"
+															<a th:href="@{editCategoria(clave=${categoria.id})}"
 																data-original-title="Editar"
 																class="btn btn-default btn-hover-info btn-xs glyphicon glyphicon-edit"
+																data-toggle="tooltip" data-placement="top"
+																title="Editar categoria"> </a>
+																
+																<a th:href="@{borrarCategoria(clave=${categoria.id})}"
+																data-original-title="Eliminar"
+																class="btn btn-default btn-hover-info btn-xs glyphicon glyphicon-trash"
 																data-toggle="tooltip" data-placement="top"
 																title="Eliminar categoria"> </a>
 

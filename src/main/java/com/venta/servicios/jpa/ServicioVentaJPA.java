@@ -78,11 +78,17 @@ public class ServicioVentaJPA implements ServicioVenta {
 		return repocategoria.findAll();
 	}
 
-	 @Transactional
+	@Transactional
 	public void saveCat(Categoria categoria) {
 		repocategoria.save(categoria);
 	}
-	 @Transactional
+	
+	@Transactional
+	public void updateCat(Categoria categoria) {
+		repocategoria.update(categoria);
+	}
+	
+	@Transactional
 	public void deleteCat(Categoria categoria) {
 		repocategoria.delete(categoria);
 	}

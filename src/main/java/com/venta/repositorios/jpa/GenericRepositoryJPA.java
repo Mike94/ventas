@@ -22,7 +22,6 @@ public abstract class GenericRepositoryJPA<T, K> implements GenericRepository<T,
 	public GenericRepositoryJPA(Class<T> tipo) {
 		this.tipo = tipo;
 	}
-
 	
 	public EntityManager getEm() {
 		return em;
@@ -31,7 +30,6 @@ public abstract class GenericRepositoryJPA<T, K> implements GenericRepository<T,
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
-	
 
 	public T findOne(K k) {
 		return em.find(tipo, k);
@@ -50,6 +48,12 @@ public abstract class GenericRepositoryJPA<T, K> implements GenericRepository<T,
 	@Transactional
 	public void save(T tipo) {
 		em.persist(tipo);
+
+	}
+	
+	@Transactional
+	public void update(T tipo) {
+		em.merge(tipo);
 
 	}
 

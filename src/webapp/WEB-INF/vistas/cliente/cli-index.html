@@ -86,12 +86,16 @@
 
 													<td class="pad-no">
 														<div class="form-group">
-															<a th:href="@{borrarcliente(clave=${cliente.id})}"
+															<a th:href="@{editCliente(clave=${cliente.id})}"
 																data-original-title="Editar"
 																class="btn btn-default btn-hover-info btn-xs glyphicon glyphicon-edit"
 																data-toggle="tooltip" data-placement="top"
+																title="Editar cliente"> </a>
+															<a th:href="@{borrarCliente(clave=${cliente.id})}"
+																data-original-title="Eliminar"
+																class="btn btn-default btn-hover-info btn-xs glyphicon glyphicon-trash"
+																data-toggle="tooltip" data-placement="top"
 																title="Eliminar cliente"> </a>
-
 														
 														</div>
 

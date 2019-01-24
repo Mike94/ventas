@@ -34,6 +34,8 @@ public interface ServicioVenta {
 	Iterable<Categoria> findAllCat();
 
 	void saveCat(Categoria categoria);
+	
+	void updateCat(Categoria categoria);
 
 	void deleteCat(Categoria categoria);
 	

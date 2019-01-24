@@ -53,9 +53,13 @@ public class ClienteController {
 		servicio.deleteCli(new Cliente(id));
 		modelo.addAttribute("clientes", servicio.findAllCat());
 		return "cliente/cli-index";
-		
-		
-		
+	}
+	
+	@RequestMapping("/editCliente")
+	public String editCliente(@RequestParam("clave") Integer id, Model modelo) {
+		servicio.deleteCli(new Cliente(id));
+		modelo.addAttribute("clientes", servicio.findAllCat());
+		return "cliente/cli-index";
 	}
 }
 
