@@ -33,9 +33,7 @@ public class CategoriaController {
 	
 	@RequestMapping("/new")
 	public String fNuevaCategoria(Model modelo) {
-		
 		modelo.addAttribute(new Categoria());
-		
 		return "categoria/cat-new";
 	
 	}
@@ -45,25 +43,19 @@ public class CategoriaController {
 	@RequestMapping(value="/insertarCategoria",method=RequestMethod.POST)
 	public String insertarCategoria( @Valid @ModelAttribute Categoria categoria, BindingResult validacion, Model modelo) {
 		if (validacion.hasErrors()) {
-			
 			return "categoria/cat-new";
 		}else {
 			servicio.saveCat(categoria);
-			modelo.addAttribute("categoria", servicio.findAllCat());
+			modelo.addAttribute("categorias", servicio.findAllCat());
 			return "categoria/cat-index";
 		}
-		
-		
 			
 	}
 	@RequestMapping("/borrarCategoria")
 	public String borrarCategoria(@RequestParam("clave") Integer id, Model modelo) {
-		
 		servicio.deleteCat(new Categoria(id));
-		modelo.addAttribute("categoria", servicio.findAllCat());
+		modelo.addAttribute("categorias", servicio.findAllCat());
 		return "categoria/cat-index";
-		
-		
 		
 	}
 }

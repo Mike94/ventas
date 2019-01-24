@@ -37,19 +37,16 @@ public class ProductoController {
 		//Enviamos las categorias para mostrarlas en la lista desplegable
 		modelo.addAttribute("categorias", servicio.findAllCat());
 		return "producto/prod-new";
-
 	}
 
 	// ya tenemos el producto rellenado con los datos del formulario
 	@RequestMapping(value = "/insertarProducto", method = RequestMethod.POST)
 	public String insertarProducto(@Valid @ModelAttribute Producto producto, BindingResult validacion, Model modelo) {
 		if (validacion.hasErrors()) {
-
 			return "producto/prod-new";
 		} else {
-
 			servicio.saveProd(producto);
-			modelo.addAttribute("producto", servicio.findAllProd());
+			modelo.addAttribute("productos", servicio.findAllProd());
 			return "producto/prod-index";
 		}
 
@@ -57,9 +54,8 @@ public class ProductoController {
 
 	@RequestMapping("/borrarProducto")
 	public String borrarProducto(@RequestParam("clave") Integer id, Model modelo) {
-
 		servicio.deleteProd(new Producto(id));
-		modelo.addAttribute("producto", servicio.findAllProd());
+		modelo.addAttribute("productos", servicio.findAllProd());
 		return "producto/prod-index";
 
 	}

@@ -23,7 +23,6 @@ public class ClienteController {
 	
 	@RequestMapping("/index")
 	public String lista(Model modelo) {
-		
 		//Envia a la vista es decir a la plantilla todos los Clientes
 		modelo.addAttribute("clientes", servicio.findAllCli());
 		
@@ -33,34 +32,26 @@ public class ClienteController {
 	
 	@RequestMapping("/new")
 	public String fNuevoCliente(Model modelo) {
-		
 		modelo.addAttribute(new Cliente());
-		
 		return "cliente/cli-new";
-	
 	}
-	
 	
 	// ya tenemos el objeto  cliente lleno con los datos del formulario
 	@RequestMapping(value="/insertarCliente",method=RequestMethod.POST)
 	public String insertarCliente( @Valid @ModelAttribute Cliente cliente, BindingResult validacion, Model modelo) {
-		if (validacion.hasErrors()) {
-			
+		if (validacion.hasErrors()) {			
 			return "cliente/cli-new";
 		}else {
 			servicio.saveCli(cliente);
-			modelo.addAttribute("cliente", servicio.findAllCat());
+			modelo.addAttribute("clientes", servicio.findAllCli());
 			return "cliente/cli-index";
-		}
-		
-		
-			
+		}	
 	}
+	
 	@RequestMapping("/borrarCliente")
 	public String borrarCliente(@RequestParam("clave") Integer id, Model modelo) {
-		
 		servicio.deleteCli(new Cliente(id));
-		modelo.addAttribute("cliente", servicio.findAllCat());
+		modelo.addAttribute("clientes", servicio.findAllCat());
 		return "cliente/cli-index";
 		
 		
