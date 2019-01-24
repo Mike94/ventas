@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.venta.proy.Categoria;
 import com.venta.proy.Producto;
 import com.venta.servicios.ServicioVenta;
 
@@ -22,7 +23,6 @@ public class ProductoController {
 
 	@RequestMapping("/index")
 	public String lista(Model modelo) {
-
 		// Envia a la vista es decir a la plantilla todos los productos
 		modelo.addAttribute("productos", servicio.findAllProd());
 
@@ -39,10 +39,11 @@ public class ProductoController {
 		return "producto/prod-new";
 	}
 
-	// ya tenemos el producto rellenado con los datos del formulario
+	// Ya tenemos el producto rellenado con los datos del formulario
 	@RequestMapping(value = "/insertarProducto", method = RequestMethod.POST)
 	public String insertarProducto(@Valid @ModelAttribute Producto producto, BindingResult validacion, Model modelo) {
 		if (validacion.hasErrors()) {
+			modelo.addAttribute("categorias",servicio.findAllCat());
 			return "producto/prod-new";
 		} else {
 			servicio.saveProd(producto);
@@ -50,6 +51,23 @@ public class ProductoController {
 			return "producto/prod-index";
 		}
 
+	}
+	
+	@RequestMapping("/editProducto")
+	public String editProducto(@RequestParam("clave") Integer id, Model modelo) {
+		modelo.addAttribute("producto", servicio.findOneProd(id));
+		modelo.addAttribute("categorias",servicio.findAllCat());
+		return "producto/prod-edit";
+	}
+	
+	@RequestMapping(value="/updateProducto", method=RequestMethod.POST)
+	public String updateProducto(@Valid @ModelAttribute Producto producto, BindingResult validacion, Model modelo) {
+		if (validacion.hasErrors()) {
+			return "producto/edit";
+		} else {
+			servicio.updateProd(producto);
+			return "redirect:/producto/index";
+		}
 	}
 
 	@RequestMapping("/borrarProducto")

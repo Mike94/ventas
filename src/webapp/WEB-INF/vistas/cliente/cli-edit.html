@@ -44,15 +44,15 @@
 	    <div id="page-wrapper">
 			<div class="col-md-6 col-md-offset-2">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Crear Categoria</div>
+					<div class="panel-heading">Editar Cliente</div>
 					<div class="panel-body">
 
-						<form class="form-horizontal" role="form" th:object="${categoria}"
-							action="insertarCategoria" method="POST">
+						<form class="form-horizontal" role="form" th:object="${cliente}"
+							action="updateCliente" method="POST">
 
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="Id">Id
-									Categoria:</label>
+									cliente:</label>
 								<div class="col-md-2">
 
 									<input id="txtid" name="txtid" type="text" placeholder=""
@@ -63,10 +63,40 @@
 
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="tdenominacion">Denominación:</label>
+								<label class="col-md-4 control-label" for="tnombres">Nombres:</label>
 								<div class="col-md-6">
-									<input id="txtdenominacion" name="txtdenominacion" type="text"
-										placeholder="" th:field="*{denominacion}"
+									<input id="txtnombres" name="txtnombres" type="text"
+										placeholder="" th:field="*{nombres}"
+										class="form-control input-md" required="">
+								</div>
+							</div>
+							
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="tdni">DNI:</label>
+								<div class="col-md-6">
+									<input id="txtdni" name="txtdni" type="text"
+										placeholder="" th:field="*{dni}"
+										class="form-control input-md" required="">
+								</div>
+							</div>
+							
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="tapellidos">Apellidos:</label>
+								<div class="col-md-6">
+									<input id="txtapellidos" name="txtapellidos" type="text"
+										placeholder="" th:field="*{apellidos}"
+										class="form-control input-md" required="">
+								</div>
+							</div>
+							
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="tnombres">Direccion:</label>
+								<div class="col-md-6">
+									<input id="txtdireccion" name="txtdireccion" type="text"
+										placeholder="" th:field="*{direccion}"
 										class="form-control input-md" required="">
 								</div>
 							</div>

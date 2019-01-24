@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.venta.proy.Categoria;
 import com.venta.proy.Cliente;
 import com.venta.servicios.ServicioVenta;
 
@@ -36,7 +37,7 @@ public class ClienteController {
 		return "cliente/cli-new";
 	}
 	
-	// ya tenemos el objeto  cliente lleno con los datos del formulario
+	// Ya tenemos el objeto  cliente lleno con los datos del formulario
 	@RequestMapping(value="/insertarCliente",method=RequestMethod.POST)
 	public String insertarCliente( @Valid @ModelAttribute Cliente cliente, BindingResult validacion, Model modelo) {
 		if (validacion.hasErrors()) {			
@@ -48,19 +49,29 @@ public class ClienteController {
 		}	
 	}
 	
+	@RequestMapping("/editCliente")
+	public String editCliente(@RequestParam("clave") Integer id, Model modelo) {
+		modelo.addAttribute("cliente", servicio.findOneCli(id));
+		return "cliente/cli-edit";
+	}
+	
+	@RequestMapping(value="/updateCliente", method=RequestMethod.POST)
+	public String updateCliente(@Valid @ModelAttribute Cliente cliente, BindingResult validacion, Model modelo) {
+		if (validacion.hasErrors()) {
+			return "cliente/edit";
+		} else {
+			servicio.updateCli(cliente);
+			return "redirect:/cliente/index";
+		}
+	}
+	
 	@RequestMapping("/borrarCliente")
 	public String borrarCliente(@RequestParam("clave") Integer id, Model modelo) {
 		servicio.deleteCli(new Cliente(id));
 		modelo.addAttribute("clientes", servicio.findAllCat());
 		return "cliente/cli-index";
-	}
+	}	
 	
-	@RequestMapping("/editCliente")
-	public String editCliente(@RequestParam("clave") Integer id, Model modelo) {
-		servicio.deleteCli(new Cliente(id));
-		modelo.addAttribute("clientes", servicio.findAllCat());
-		return "cliente/cli-index";
-	}
 }
 
 

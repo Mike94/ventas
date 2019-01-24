@@ -26,13 +26,20 @@ public class Producto {
 	private Categoria categoria;	
 	
 	
+	public Producto(int id, String nombre, int stock, Categoria categoria) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.stock = stock;
+		this.categoria = categoria;
+	}
+	
 	public Producto(String nombre, int stock, Categoria categoria) {
 		super();
 		this.nombre = nombre;
 		this.stock = stock;
 		this.categoria = categoria;
 	}
-	
 	
 	public Producto(int id) {
 		super();

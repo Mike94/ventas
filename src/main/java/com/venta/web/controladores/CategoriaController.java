@@ -34,7 +34,6 @@ public class CategoriaController {
 	public String fNuevaCategoria(Model modelo) {
 		modelo.addAttribute(new Categoria());
 		return "categoria/cat-new";
-	
 	}
 	
 	// Ya tenemos el objeto  categoria lleno con los datos del formulario
@@ -61,7 +60,7 @@ public class CategoriaController {
 		} else {
 			servicio.updateCat(categoria);
 			return "redirect:/categoria/index";
-		}		
+		}
 	}
 	
 	@RequestMapping("/borrarCategoria")

@@ -33,7 +33,6 @@ public class ServicioVentaJPA implements ServicioVenta {
 	public CategoriaRepository getRepocategoria() {
 		return repocategoria;
 	}
-
 	
 	public void setRepocategoria(CategoriaRepository repocategoria) {
 		this.repocategoria = repocategoria;
@@ -42,7 +41,6 @@ public class ServicioVentaJPA implements ServicioVenta {
 	public ClienteRepository getRepocliente() {
 		return repocliente;
 	}
-
 	
 	public void setRepocliente(ClienteRepository repocliente) {
 		this.repocliente = repocliente;
@@ -52,18 +50,22 @@ public class ServicioVentaJPA implements ServicioVenta {
 	public Producto findOneProd(Integer id) {
 		return repoproducto.findOne(id);
 	}
-
 	
 	public Iterable<Producto> findAllProd() {
 		return repoproducto.findAll();
 	}
 
-	 @Transactional
+	@Transactional
 	public void saveProd(Producto producto) {
 		repoproducto.save(producto);
 	}
+	
+	@Transactional
+	public void updateProd(Producto producto) {
+		repoproducto.update(producto);
+	}
 
-	 @Transactional
+	@Transactional
 	public void deleteProd(Producto producto) {
 		repoproducto.delete(producto);
 	}
@@ -72,7 +74,6 @@ public class ServicioVentaJPA implements ServicioVenta {
 	public Categoria findOneCat(Integer id) {
 		return repocategoria.findOne(id);
 	}
-
 	
 	public Iterable<Categoria> findAllCat() {
 		return repocategoria.findAll();
@@ -101,11 +102,17 @@ public class ServicioVentaJPA implements ServicioVenta {
 		return repocliente.findAll();
 	}
 
-	 @Transactional
+	@Transactional
 	public void saveCli(Cliente cliente) {
 		repocliente.save(cliente);
 	}
-	 @Transactional
+	
+	@Transactional
+	public void updateCli(Cliente cliente) {
+		repocliente.update(cliente);
+	}
+	
+	@Transactional
 	public void deleteCli(Cliente cliente) {
 		repocliente.delete(cliente);
 	}

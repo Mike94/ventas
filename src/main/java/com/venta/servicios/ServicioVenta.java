@@ -26,6 +26,8 @@ public interface ServicioVenta {
 	Iterable<Producto> findAllProd();
 
 	void saveProd(Producto producto);
+	
+	void updateProd(Producto producto);
 
 	void deleteProd(Producto producto);
 
@@ -44,6 +46,8 @@ public interface ServicioVenta {
 	Iterable<Cliente> findAllCli();
 
 	void saveCli(Cliente cliente);
+	
+	void updateCli(Cliente cliente);
 
 	void deleteCli(Cliente cliente);
 
