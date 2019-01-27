@@ -6,9 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.venta.proy.Categoria;
 import com.venta.proy.Cliente;
+import com.venta.proy.Documento;
 import com.venta.proy.Producto;
 import com.venta.repositorios.CategoriaRepository;
 import com.venta.repositorios.ClienteRepository;
+import com.venta.repositorios.DocumentoRepository;
 import com.venta.repositorios.ProductoRepository;
 import com.venta.servicios.ServicioVenta;
 
@@ -20,6 +22,8 @@ public class ServicioVentaJPA implements ServicioVenta {
 	private CategoriaRepository repocategoria;
 	@Autowired
 	private ClienteRepository repocliente;
+	@Autowired
+	private DocumentoRepository repodocumento;
 
 	
 	public ProductoRepository getRepoproducto() {
@@ -46,6 +50,13 @@ public class ServicioVentaJPA implements ServicioVenta {
 		this.repocliente = repocliente;
 	}
 
+	public DocumentoRepository getRepodocumento() {
+		return repodocumento;
+	}
+	
+	public void setRepodocumento(DocumentoRepository repodocumento) {
+		this.repodocumento = repodocumento;
+	}
 	
 	public Producto findOneProd(Integer id) {
 		return repoproducto.findOne(id);
@@ -115,6 +126,29 @@ public class ServicioVentaJPA implements ServicioVenta {
 	@Transactional
 	public void deleteCli(Cliente cliente) {
 		repocliente.delete(cliente);
+	}
+	
+	public Documento findOneDoc(Integer id) {
+		return repodocumento.findOne(id);
+	}
+	
+	public Iterable<Documento> findAllDoc() {
+		return repodocumento.findAll();
+	}
+
+	@Transactional
+	public void saveDoc(Documento documento) {
+		repodocumento.save(documento);
+	}
+	
+	@Transactional
+	public void updateDoc(Documento documento) {
+		repodocumento.update(documento);
+	}
+	
+	@Transactional
+	public void deleteDoc(Documento documento) {
+		repodocumento.delete(documento);
 	}
 
 
