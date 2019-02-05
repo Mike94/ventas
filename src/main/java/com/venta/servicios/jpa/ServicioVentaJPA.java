@@ -151,19 +151,21 @@ public class ServicioVentaJPA implements ServicioVenta {
 
 	@Transactional
 	public void saveDoc(Documento documento) {
+		repodocumento.save(documento);
+	}
+	
+	@Transactional
+	public void updateDoc(Documento documento) {
 		Documento d = repodocumento.findOne(documento.getId());
 		d.setNombre(documento.getNombre());
 		repodocumento.save(d);
 	}
 	
 	@Transactional
-	public void updateDoc(Documento documento) {
-		repodocumento.update(documento);
-	}
-	
-	@Transactional
 	public void deleteDoc(Documento documento) {
-		repodocumento.delete(documento);
+		Documento d = repodocumento.findOne(documento.getId());
+		d.setBorrado(false);
+		repodocumento.save(d);
 	}
 
 

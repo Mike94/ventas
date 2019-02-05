@@ -34,6 +34,7 @@ public class CategoriaController {
 	public String fNuevaCategoria(Model modelo) {
 		modelo.addAttribute(new Categoria());
 		modelo.addAttribute("url","save");
+		modelo.addAttribute("editar","Nueva");
 		return name+"/cat-new-edit";
 	}
 	
@@ -52,6 +53,7 @@ public class CategoriaController {
 	public String editCategoria(@RequestParam("clave") Integer id, Model modelo) {
 		modelo.addAttribute("categoria", servicio.findOneCat(id));
 		modelo.addAttribute("url","update");
+		modelo.addAttribute("editar","Editar");
 		return name+"/cat-new-edit";
 	}
 	

@@ -15,6 +15,7 @@ public class Documento implements Serializable {
 	@Id
 	private int id;
 	private String nombre;
+	private boolean borrado=true;
 
 //	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
 //	private List<Producto> productos = new ArrayList<Producto>();
@@ -23,6 +24,7 @@ public class Documento implements Serializable {
 		super();
 		this.id = id;
 		this.nombre = nombre;
+		this.borrado = true;
 	}
 
 	public Documento(int id) {
@@ -33,10 +35,6 @@ public class Documento implements Serializable {
 	public Documento() {
 		super();
 	}
-
-//	public void addProducto(Producto p) {
-//		productos.add(p);
-//	}
 
 	public int getId() {
 		return id;
@@ -61,6 +59,14 @@ public class Documento implements Serializable {
 //	public void setProductos(List<Producto> productos) {
 //		this.productos = productos;
 //	}
+
+	public boolean isBorrado() {
+		return borrado;
+	}
+
+	public void setBorrado(boolean borrado) {
+		this.borrado = borrado;
+	}
 
 	@Override
 	public int hashCode() {
