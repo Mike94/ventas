@@ -4,10 +4,12 @@ import com.venta.proy.Categoria;
 import com.venta.proy.Cliente;
 import com.venta.proy.Documento;
 import com.venta.proy.Producto;
+import com.venta.proy.User;
 import com.venta.repositorios.CategoriaRepository;
 import com.venta.repositorios.ClienteRepository;
 import com.venta.repositorios.DocumentoRepository;
 import com.venta.repositorios.ProductoRepository;
+import com.venta.repositorios.UserRepository;
 
 public interface ServicioVenta {
 
@@ -26,6 +28,10 @@ public interface ServicioVenta {
 	DocumentoRepository getRepodocumento();
 
 	void setRepodocumento(DocumentoRepository repodocumento);
+	
+	UserRepository getRepouser();
+
+	void setRepouser(UserRepository repouser);
 
 	Producto findOneProd(Integer id);
 
@@ -66,5 +72,15 @@ public interface ServicioVenta {
 	void updateDoc(Documento documento);
 
 	void deleteDoc(Documento documento);
+	
+	User findOneUser(Integer id);
+
+	Iterable<User> findAllUser();
+
+	void saveUser(User user);
+	
+	void updateUser(User user);
+
+	void deleteUser(User user);
 
 }

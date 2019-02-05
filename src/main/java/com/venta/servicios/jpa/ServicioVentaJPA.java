@@ -8,10 +8,12 @@ import com.venta.proy.Categoria;
 import com.venta.proy.Cliente;
 import com.venta.proy.Documento;
 import com.venta.proy.Producto;
+import com.venta.proy.User;
 import com.venta.repositorios.CategoriaRepository;
 import com.venta.repositorios.ClienteRepository;
 import com.venta.repositorios.DocumentoRepository;
 import com.venta.repositorios.ProductoRepository;
+import com.venta.repositorios.UserRepository;
 import com.venta.servicios.ServicioVenta;
 
 @Service
@@ -24,12 +26,13 @@ public class ServicioVentaJPA implements ServicioVenta {
 	private ClienteRepository repocliente;
 	@Autowired
 	private DocumentoRepository repodocumento;
+	@Autowired
+	private UserRepository repouser;
 
-	
 	public ProductoRepository getRepoproducto() {
 		return repoproducto;
 	}
-	
+
 	public void setRepoproducto(ProductoRepository repoproducto) {
 		this.repoproducto = repoproducto;
 	}
@@ -37,15 +40,15 @@ public class ServicioVentaJPA implements ServicioVenta {
 	public CategoriaRepository getRepocategoria() {
 		return repocategoria;
 	}
-	
+
 	public void setRepocategoria(CategoriaRepository repocategoria) {
 		this.repocategoria = repocategoria;
 	}
-	
+
 	public ClienteRepository getRepocliente() {
 		return repocliente;
 	}
-	
+
 	public void setRepocliente(ClienteRepository repocliente) {
 		this.repocliente = repocliente;
 	}
@@ -53,15 +56,23 @@ public class ServicioVentaJPA implements ServicioVenta {
 	public DocumentoRepository getRepodocumento() {
 		return repodocumento;
 	}
-	
+
 	public void setRepodocumento(DocumentoRepository repodocumento) {
 		this.repodocumento = repodocumento;
 	}
-	
+
+	public UserRepository getRepouser() {
+		return repouser;
+	}
+
+	public void setRepouser(UserRepository repouser) {
+		this.repouser = repouser;
+	}
+
 	public Producto findOneProd(Integer id) {
 		return repoproducto.findOne(id);
 	}
-	
+
 	public Iterable<Producto> findAllProd() {
 		return repoproducto.findAll();
 	}
@@ -70,7 +81,7 @@ public class ServicioVentaJPA implements ServicioVenta {
 	public void saveProd(Producto producto) {
 		repoproducto.save(producto);
 	}
-	
+
 	@Transactional
 	public void updateProd(Producto producto) {
 		Producto p = repoproducto.findOne(producto.getId());
@@ -86,11 +97,10 @@ public class ServicioVentaJPA implements ServicioVenta {
 		repoproducto.delete(producto);
 	}
 
-	
 	public Categoria findOneCat(Integer id) {
 		return repocategoria.findOne(id);
 	}
-	
+
 	public Iterable<Categoria> findAllCat() {
 		return repocategoria.findAll();
 	}
@@ -99,25 +109,25 @@ public class ServicioVentaJPA implements ServicioVenta {
 	public void saveCat(Categoria categoria) {
 		repocategoria.save(categoria);
 	}
-	
+
 	@Transactional
 	public void updateCat(Categoria categoria) {
 		Categoria c = repocategoria.findOne(categoria.getId());
 		c.setDenominacion(categoria.getDenominacion());
 		repocategoria.save(c);
 	}
-	
+
 	@Transactional
 	public void deleteCat(Categoria categoria) {
 		Categoria c = repocategoria.findOne(categoria.getId());
 		c.setBorrado(false);
 		repocategoria.save(c);
 	}
-	 
+
 	public Cliente findOneCli(Integer id) {
 		return repocliente.findOne(id);
 	}
-	
+
 	public Iterable<Cliente> findAllCli() {
 		return repocliente.findAll();
 	}
@@ -126,7 +136,7 @@ public class ServicioVentaJPA implements ServicioVenta {
 	public void saveCli(Cliente cliente) {
 		repocliente.save(cliente);
 	}
-	
+
 	@Transactional
 	public void updateCli(Cliente cliente) {
 		Cliente c = repocliente.findOne(cliente.getId());
@@ -136,16 +146,16 @@ public class ServicioVentaJPA implements ServicioVenta {
 		c.setDireccion(cliente.getDireccion());
 		repocliente.save(c);
 	}
-	
+
 	@Transactional
 	public void deleteCli(Cliente cliente) {
 		repocliente.delete(cliente);
 	}
-	
+
 	public Documento findOneDoc(Integer id) {
 		return repodocumento.findOne(id);
 	}
-	
+
 	public Iterable<Documento> findAllDoc() {
 		return repodocumento.findAll();
 	}
@@ -154,14 +164,14 @@ public class ServicioVentaJPA implements ServicioVenta {
 	public void saveDoc(Documento documento) {
 		repodocumento.save(documento);
 	}
-	
+
 	@Transactional
 	public void updateDoc(Documento documento) {
 		Documento d = repodocumento.findOne(documento.getId());
 		d.setNombre(documento.getNombre());
 		repodocumento.save(d);
 	}
-	
+
 	@Transactional
 	public void deleteDoc(Documento documento) {
 		Documento d = repodocumento.findOne(documento.getId());
@@ -169,5 +179,35 @@ public class ServicioVentaJPA implements ServicioVenta {
 		repodocumento.save(d);
 	}
 
+	@Override
+	public User findOneUser(Integer id) {
+		return repouser.findOne(id);
+	}
+
+	@Override
+	public Iterable<User> findAllUser() {
+		return repouser.findAll();
+	}
+
+	@Override
+	public void saveUser(User user) {
+		repouser.save(user);
+	}
+
+	@Override
+	public void updateUser(User user) {
+		User u = repouser.findOne(user.getId());
+		u.setNombres(user.getNombres());
+		u.setApellidos(user.getApellidos());
+		u.setDni(user.getDni());
+		u.setEmail(user.getEmail());
+		u.setUsername(user.getUsername());
+		repouser.save(u);
+	}
+
+	@Override
+	public void deleteUser(User user) {
+		repouser.delete(user);
+	}
 
 }

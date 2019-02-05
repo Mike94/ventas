@@ -24,6 +24,10 @@ public class Factura {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User user;
 
 	public int getId() {
 		return id;
