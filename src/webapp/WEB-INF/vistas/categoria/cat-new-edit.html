@@ -22,7 +22,7 @@
                                 <label class="col-md-4 control-label" for="tdenominacion">Denominacion:</label>
                                 <div class="col-md-6">
                                     <input id="txtdenominacion" name="denominacion" type="text" placeholder="" th:field="*{denominacion}" class="form-control input-md" required="">
-                                    <p th:if="${#fields.hasErrors('denominacion')}" th:errors="*{id}"></p>
+                                    <p th:if="${#fields.hasErrors('denominacion')}" th:errors="*{denominacion}"></p>
                                 </div>
                             </div>
 

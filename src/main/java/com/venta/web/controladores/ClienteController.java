@@ -10,68 +10,67 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.venta.proy.Categoria;
 import com.venta.proy.Cliente;
 import com.venta.servicios.ServicioVenta;
 
 @Controller
 @RequestMapping("/cliente")
 public class ClienteController {
+	private String name="cliente";
 
 	@Autowired
 	ServicioVenta servicio;
 	
 	@RequestMapping("/index")
 	public String lista(Model modelo) {
-		//Envia a la vista es decir a la plantilla todos los Clientes
+		//Envia a la vista es decir a la plantilla todas las Clientes
 		modelo.addAttribute("clientes", servicio.findAllCli());
-		
-		//cli-index.html en la carpeta cliente
-		return "cliente/cli-index";
+		//index.html en la carpeta cliente
+		return name+"/index";
 	}
 	
 	@RequestMapping("/new")
-	public String fNuevoCliente(Model modelo) {
+	public String nuevo(Model modelo) {
 		modelo.addAttribute(new Cliente());
-		return "cliente/cli-new";
+		modelo.addAttribute("url","save");
+		modelo.addAttribute("editar","Nuevo");
+		return name+"/new-edit";
 	}
 	
 	// Ya tenemos el objeto  cliente lleno con los datos del formulario
-	@RequestMapping(value="/insertarCliente",method=RequestMethod.POST)
-	public String insertarCliente( @Valid @ModelAttribute Cliente cliente, BindingResult validacion, Model modelo) {
-		if (validacion.hasErrors()) {			
-			return "cliente/cli-new";
+	@RequestMapping(value="/save",method=RequestMethod.POST)
+	public String save( @Valid @ModelAttribute Cliente cliente, BindingResult validacion, Model modelo) {
+		if (validacion.hasErrors()) {
+			return "cliente/"+name+"/new";
 		}else {
 			servicio.saveCli(cliente);
-			modelo.addAttribute("clientes", servicio.findAllCli());
-			return "cliente/cli-index";
-		}	
+			return "redirect:/"+name+"/index";
+		}			
 	}
 	
-	@RequestMapping("/editCliente")
-	public String editCliente(@RequestParam("clave") Integer id, Model modelo) {
+	@RequestMapping("/edit")
+	public String edit(@RequestParam("clave") Integer id, Model modelo) {
 		modelo.addAttribute("cliente", servicio.findOneCli(id));
-		return "cliente/cli-edit";
+		modelo.addAttribute("url","update");
+		modelo.addAttribute("editar","Editar");
+		return name+"/new-edit";
 	}
 	
-	@RequestMapping(value="/updateCliente", method=RequestMethod.POST)
-	public String updateCliente(@Valid @ModelAttribute Cliente cliente, BindingResult validacion, Model modelo) {
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public String update(@Valid @ModelAttribute Cliente cliente, BindingResult validacion, Model modelo) {
 		if (validacion.hasErrors()) {
-			return "cliente/edit";
+			return name+"/new-edit";
 		} else {
 			servicio.updateCli(cliente);
-			return "redirect:/cliente/index";
+			return "redirect:/"+name+"/index";
 		}
 	}
 	
-	@RequestMapping("/borrarCliente")
-	public String borrarCliente(@RequestParam("clave") Integer id, Model modelo) {
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("clave") Integer id, Model modelo) {
 		servicio.deleteCli(new Cliente(id));
-		modelo.addAttribute("clientes", servicio.findAllCat());
-		return "cliente/cli-index";
-	}	
-	
+		return "redirect:/"+name+"/index";		
+	}
 }
 
 
