@@ -73,7 +73,11 @@ public class ServicioVentaJPA implements ServicioVenta {
 	
 	@Transactional
 	public void updateProd(Producto producto) {
-		repoproducto.update(producto);
+		Producto p = repoproducto.findOne(producto.getId());
+		p.setNombre(producto.getNombre());
+		p.setStock(producto.getStock());
+		p.setCategoria(producto.getCategoria());
+		repoproducto.save(p);
 	}
 
 	@Transactional
@@ -97,12 +101,16 @@ public class ServicioVentaJPA implements ServicioVenta {
 	
 	@Transactional
 	public void updateCat(Categoria categoria) {
-		repocategoria.update(categoria);
+		Categoria c = repocategoria.findOne(categoria.getId());
+		c.setDenominacion(categoria.getDenominacion());
+		repocategoria.save(c);
 	}
 	
 	@Transactional
 	public void deleteCat(Categoria categoria) {
-		repocategoria.delete(categoria);
+		Categoria c = repocategoria.findOne(categoria.getId());
+		c.setBorrado(false);
+		repocategoria.save(c);
 	}
 	 
 	public Cliente findOneCli(Integer id) {
@@ -120,7 +128,12 @@ public class ServicioVentaJPA implements ServicioVenta {
 	
 	@Transactional
 	public void updateCli(Cliente cliente) {
-		repocliente.update(cliente);
+		Cliente c = repocliente.findOne(cliente.getId());
+		c.setDni(cliente.getDni());
+		c.setNombres(cliente.getNombres());
+		c.setApellidos(cliente.getApellidos());
+		c.setDireccion(cliente.getDireccion());
+		repocliente.save(c);
 	}
 	
 	@Transactional
@@ -138,7 +151,9 @@ public class ServicioVentaJPA implements ServicioVenta {
 
 	@Transactional
 	public void saveDoc(Documento documento) {
-		repodocumento.save(documento);
+		Documento d = repodocumento.findOne(documento.getId());
+		d.setNombre(documento.getNombre());
+		repodocumento.save(d);
 	}
 	
 	@Transactional

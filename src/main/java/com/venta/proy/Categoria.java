@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
 @Table(name="categoria")
 public class Categoria implements Serializable {
@@ -15,6 +17,7 @@ public class Categoria implements Serializable {
 	@Id
 	private int id;
 	private String denominacion;
+	private boolean borrado=true;
 	
 	@OneToMany(mappedBy = "categoria", cascade=CascadeType.ALL,orphanRemoval=true)
 	private List<Producto> productos = new ArrayList<Producto>();
@@ -23,6 +26,7 @@ public class Categoria implements Serializable {
 		super();
 		this.id = id;
 		this.denominacion = denominacion;
+		this.borrado = true;
 	}
 
 	public Categoria(int id) {
@@ -48,6 +52,14 @@ public class Categoria implements Serializable {
 
 	public String getDenominacion() {
 		return denominacion;
+	}
+
+	public boolean isBorrado() {
+		return borrado;
+	}
+
+	public void setBorrado(boolean borrado) {
+		this.borrado = borrado;
 	}
 
 	public void setDenominacion(String denominacion) {

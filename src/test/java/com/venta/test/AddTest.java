@@ -56,7 +56,7 @@ public class AddTest extends JPAUnitTest{
 		em.getTransaction().begin();
 		Producto p = new Producto("Chedar",100,c);
 		Producto p1 = new Producto("Coca Cola",200,c1);
-		Producto p3 = new Producto("Inka Cola",200,c1);
+		Producto p3 = new Producto("Inka Cola",150,c1);
 		em.persist(p);
 		em.persist(p1);
 		em.persist(p3);

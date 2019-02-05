@@ -17,56 +17,58 @@ import com.venta.servicios.ServicioVenta;
 @Controller
 @RequestMapping("/categoria")
 public class CategoriaController {
+	private String name="categoria";
 
 	@Autowired
 	ServicioVenta servicio;
-	
+
 	@RequestMapping("/index")
 	public String lista(Model modelo) {
 		//Envia a la vista es decir a la plantilla todas las Categorias
 		modelo.addAttribute("categorias", servicio.findAllCat());
-		
 		//cat-index.html en la carpeta categoria
-		return "categoria/cat-index";
+		return name+"/cat-index";
 	}
 	
 	@RequestMapping("/new")
 	public String fNuevaCategoria(Model modelo) {
 		modelo.addAttribute(new Categoria());
-		return "categoria/cat-new";
+		modelo.addAttribute("url","save");
+		return name+"/cat-new-edit";
 	}
 	
 	// Ya tenemos el objeto  categoria lleno con los datos del formulario
-	@RequestMapping(value="/insertarCategoria",method=RequestMethod.POST)
-	public String insertarCategoria( @Valid @ModelAttribute Categoria categoria, BindingResult validacion, Model modelo) {
+	@RequestMapping(value="/save",method=RequestMethod.POST)
+	public String saveCategoria( @Valid @ModelAttribute Categoria categoria, BindingResult validacion, Model modelo) {
 		if (validacion.hasErrors()) {
-			return "categoria/cat-new";
+			return "redirect:/"+name+"/new";
 		}else {
 			servicio.saveCat(categoria);
-			return "redirect:/categoria/index";
-		}			
-	}
-	
-	@RequestMapping("/editCategoria")
-	public String editCategoria(@RequestParam("clave") Integer id, Model modelo) {
-		modelo.addAttribute("categoria", servicio.findOneCat(id));
-		return "categoria/cat-edit";
-	}
-	
-	@RequestMapping(value="/updateCategoria", method=RequestMethod.POST)
-	public String updateCategoria(@Valid @ModelAttribute Categoria categoria, BindingResult validacion, Model modelo) {
-		if (validacion.hasErrors()) {
-			return "categoria/edit";
-		} else {
-			servicio.updateCat(categoria);
-			return "redirect:/categoria/index";
+			return "redirect:/"+name+"/index";
 		}
 	}
 	
-	@RequestMapping("/borrarCategoria")
+	@RequestMapping("/edit")
+	public String editCategoria(@RequestParam("clave") Integer id, Model modelo) {
+		modelo.addAttribute("categoria", servicio.findOneCat(id));
+		modelo.addAttribute("url","update");
+		return name+"/cat-new-edit";
+	}
+	
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public String updateCat(@Valid @ModelAttribute Categoria categoria, BindingResult validacion, Model modelo) {		
+		if (validacion.hasErrors()) {
+			return name+"/cat-edit";
+		} else {
+			servicio.updateCat(categoria);
+			return "redirect:/"+name+"/index";
+		}
+	}
+	
+	@RequestMapping("/delete")
 	public String borrarCategoria(@RequestParam("clave") Integer id, Model modelo) {
 		servicio.deleteCat(new Categoria(id));
-		return "redirect:/categoria/index";		
+		return "redirect:/"+name+"/index";		
 	}
 }
 
