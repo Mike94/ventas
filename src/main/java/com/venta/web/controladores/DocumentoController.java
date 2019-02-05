@@ -70,6 +70,6 @@ public class DocumentoController {
 	@RequestMapping("/delete")
 	public String delete(@RequestParam("clave") Integer id, Model modelo) {
 		servicio.deleteDoc(new Documento(id));
-		return "redirect:/"+name+"/index";		
+		return "redirect:/"+name+"/index";
 	}
 }
