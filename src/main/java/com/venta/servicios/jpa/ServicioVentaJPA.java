@@ -76,6 +76,7 @@ public class ServicioVentaJPA implements ServicioVenta {
 		Producto p = repoproducto.findOne(producto.getId());
 		p.setNombre(producto.getNombre());
 		p.setStock(producto.getStock());
+		p.setPrecio(producto.getPrecio());
 		p.setCategoria(producto.getCategoria());
 		repoproducto.save(p);
 	}

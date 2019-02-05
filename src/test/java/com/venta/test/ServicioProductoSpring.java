@@ -45,7 +45,7 @@ public class ServicioProductoSpring {
 
 		// em.getTransaction().begin();
 		Categoria c =repocat.findOne(1);
-		Producto prodNuevo = new Producto("Queso Freso", 123, c);
+		Producto prodNuevo = new Producto("Queso Freso", 123, 10, c);
 		repoprod.save(prodNuevo);
 	
 
