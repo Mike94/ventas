@@ -17,8 +17,8 @@ public class Documento implements Serializable {
 	private String nombre;
 	private boolean borrado=true;
 
-//	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
-//	private List<Producto> productos = new ArrayList<Producto>();
+	@OneToMany(mappedBy = "documento", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Factura> facturas = new ArrayList<Factura>();
 
 	public Documento(int id, String nombre) {
 		super();
@@ -52,13 +52,13 @@ public class Documento implements Serializable {
 		this.nombre = nombre;
 	}
 
-//	public List<Producto> getProductos() {
-//		return productos;
-//	}
-//
-//	public void setProductos(List<Producto> productos) {
-//		this.productos = productos;
-//	}
+	public List<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(List<Factura> facturas) {
+		this.facturas = facturas;
+	}
 
 	public boolean isBorrado() {
 		return borrado;

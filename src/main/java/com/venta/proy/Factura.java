@@ -12,22 +12,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="factura")
+@Table(name = "factura")
 public class Factura {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String num_factura;
 	private Date fecha;
 	private int estado;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="cliente_id")
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "cliente_id", nullable = false)
 	private Cliente cliente;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id")
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
 	private User user;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "documento_id")
+	private Documento documento;
 
 	public int getId() {
 		return id;
@@ -53,12 +57,16 @@ public class Factura {
 		this.fecha = fecha;
 	}
 
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+
 	public int isEstado() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
-		this.estado = estado;
+	public int getEstado() {
+		return estado;
 	}
 
 	public Cliente getCliente() {
@@ -67,6 +75,22 @@ public class Factura {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Documento getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(Documento documento) {
+		this.documento = documento;
 	}
 
 	public Factura(String num_factura, Date fecha, int estado, Cliente cliente) {
@@ -136,7 +160,4 @@ public class Factura {
 		return true;
 	}
 
-		
-	
-	
 }

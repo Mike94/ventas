@@ -3,11 +3,13 @@ package com.venta.servicios;
 import com.venta.proy.Categoria;
 import com.venta.proy.Cliente;
 import com.venta.proy.Documento;
+import com.venta.proy.Factura;
 import com.venta.proy.Producto;
 import com.venta.proy.User;
 import com.venta.repositorios.CategoriaRepository;
 import com.venta.repositorios.ClienteRepository;
 import com.venta.repositorios.DocumentoRepository;
+import com.venta.repositorios.FacturaRepository;
 import com.venta.repositorios.ProductoRepository;
 import com.venta.repositorios.UserRepository;
 
@@ -32,6 +34,10 @@ public interface ServicioVenta {
 	UserRepository getRepouser();
 
 	void setRepouser(UserRepository repouser);
+	
+	FacturaRepository getRepofactura();
+
+	void setRepofactura(FacturaRepository repofactura);
 
 	Producto findOneProd(Integer id);
 
@@ -82,5 +88,15 @@ public interface ServicioVenta {
 	void updateUser(User user);
 
 	void deleteUser(User user);
+	
+	Factura findOneFac(Integer id);
+
+	Iterable<Factura> findAllFac();
+
+	void saveFac(Factura factura);
+	
+	void updateFac(Factura factura);
+
+	void deleteFac(Factura factura);
 
 }

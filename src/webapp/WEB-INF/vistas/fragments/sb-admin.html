@@ -58,7 +58,7 @@
             <li><a th:href="@{'/documento/index'}"><i class="fa fa-file fa-fw"></i>Documentos</a></li>
             <li><a href="#"><i class="fa fa-gears fa-fw"></i>Ventas<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="#">Facturas</a></li>
+                    <li><a th:href="@{'/factura/index'}">Facturas</a></li>
                     <li><a href="#">Reportes</a></li>
 
                 </ul> <!-- /.nav-second-level -->
@@ -66,7 +66,6 @@
             <li><a href="/trade/details"><i class="fa fa-tachometer fa-fw"></i>Cuentas<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a th:href="@{'/user/index'}">Usuarios</a></li>
-                    <li><a href="#">Fills</a></li>
 
                 </ul> <!-- /.nav-second-level -->
             </li>

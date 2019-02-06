@@ -8,7 +8,9 @@
     <div id="wrapper">
         <div data-th-replace="fragments/sb-admin :: top-nav"></div>
         <div data-th-replace="fragments/sb-admin :: vert-nav-admin"></div>
-        <div data-th-replace="fragments/index :: page-wrapper (name='Nueva Categoria', list='Listado de Categoria', view='categoria/table')"></div>
+        <div id="page-wrapper">
+            <div data-th-replace="fragments/index :: page-wrapper (name='Nueva Categoria', list='Listado de Categoria', view='categoria/table')"></div>
+        </div>
     </div> <!-- /#wrapper -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

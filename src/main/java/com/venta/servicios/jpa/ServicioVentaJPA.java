@@ -7,11 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.venta.proy.Categoria;
 import com.venta.proy.Cliente;
 import com.venta.proy.Documento;
+import com.venta.proy.Factura;
 import com.venta.proy.Producto;
 import com.venta.proy.User;
 import com.venta.repositorios.CategoriaRepository;
 import com.venta.repositorios.ClienteRepository;
 import com.venta.repositorios.DocumentoRepository;
+import com.venta.repositorios.FacturaRepository;
 import com.venta.repositorios.ProductoRepository;
 import com.venta.repositorios.UserRepository;
 import com.venta.servicios.ServicioVenta;
@@ -28,6 +30,8 @@ public class ServicioVentaJPA implements ServicioVenta {
 	private DocumentoRepository repodocumento;
 	@Autowired
 	private UserRepository repouser;
+	@Autowired
+	private FacturaRepository repofactura;
 
 	public ProductoRepository getRepoproducto() {
 		return repoproducto;
@@ -67,6 +71,14 @@ public class ServicioVentaJPA implements ServicioVenta {
 
 	public void setRepouser(UserRepository repouser) {
 		this.repouser = repouser;
+	}
+	
+	public FacturaRepository getRepofactura() {
+		return repofactura;
+	}
+
+	public void setRepofactura(FacturaRepository repofactura) {
+		this.repofactura = repofactura;
 	}
 
 	public Producto findOneProd(Integer id) {
@@ -179,22 +191,21 @@ public class ServicioVentaJPA implements ServicioVenta {
 		repodocumento.save(d);
 	}
 
-	@Override
 	public User findOneUser(Integer id) {
 		return repouser.findOne(id);
 	}
 
-	@Override
+	@Transactional
 	public Iterable<User> findAllUser() {
 		return repouser.findAll();
 	}
 
-	@Override
+	@Transactional
 	public void saveUser(User user) {
 		repouser.save(user);
 	}
 
-	@Override
+	@Transactional
 	public void updateUser(User user) {
 		User u = repouser.findOne(user.getId());
 		u.setNombres(user.getNombres());
@@ -205,9 +216,36 @@ public class ServicioVentaJPA implements ServicioVenta {
 		repouser.save(u);
 	}
 
-	@Override
+	@Transactional
 	public void deleteUser(User user) {
 		repouser.delete(user);
 	}
+	
+	public Factura findOneFac(Integer id) {
+        return repofactura.findOne(id);
+    }
+
+    public Iterable<Factura> findAllFac() {
+        return repofactura.findAll();
+    }
+
+    @Transactional
+    public void saveFac(Factura factura) {
+        repofactura.save(factura);
+    }
+
+    @Transactional
+    public void updateFac(Factura factura) {
+        Factura f = repofactura.findOne(factura.getId());
+        f.setEstado(factura.getEstado());
+        f.setCliente(factura.getCliente());
+        f.setDocumento(factura.getDocumento());
+        repofactura.save(f);
+    }
+
+    @Transactional
+    public void deleteFac(Factura factura) {
+        repofactura.delete(factura);
+    }
 
 }
