@@ -1,27 +1,38 @@
 <script th:if="${add}">
-    var det=[];
-    function eliminar(id) {
-        cantr=parseInt($("#tdet"+id).children('td').children('input')[1].value);
-        cantp=parseInt($("#pr"+id).children("td")[3].innerText);
-        canttopr=cantp+cantr;
-        $("#pr"+id).children("td")[3].innerText=canttopr;
-        $("#tdet"+id).remove();
+    var det = [], mk = [], total=0;
+    function caltotal(id) {
+        len=det.length;
+        for (let index = 0; index < det.length; index++) {
+            precio = det[index][1];
+            cant = det[index][2];
+            total=total+precio*cant;
+        }
+        $('#totalsum').html(total);
     }
-    function agregar(id){
-        val=$("#pr"+id).children("td");
-        precio=parseFloat(val[2].innerText);
-        cantidad=parseInt(val.children('input')[0].value);
-        stock=parseInt($("#pr"+id).children("td")[3].innerText);
-        id=val[0].innerText;
-        if (cantidad<=stock) {
-            $("#igv").before('<tr id="tdet'+id+'"><td>'+id+'</td><td>'+val[1].innerText+'</td><td><input type="text" name="" id="" value="'+precio+'"/></td><td><input type="text" name="" id="" value="'+cantidad+'"/></td><td>'+(precio*cantidad)+'</td><td><button id="" name="" class="btn btn-xs btn-danger" type="button" onclick="eliminar('+id+')"><i class="glyphicon glyphicon-trash"></i></button></td></tr>');
-            stock=stock-cantidad;
-            $("#pr"+id).children("td")[3].innerText=stock;
-            $("#pr"+id).children("td").children('input')[0].value=0;
-            det.push([{"id":id},{"precio":precio},{"cant":cantidad}]);
+    function eliminar(id) {
+        cantr = parseInt($("#tdet" + id).children('td').children('input')[1].value);
+        cantp = parseInt($("#pr" + id).children("td")[3].innerText);
+        canttopr = cantp + cantr;
+        $("#pr" + id).children("td")[3].innerText = canttopr;
+        $("#tdet" + id).remove();
+    }
+    function agregar(id) {
+        val = $("#pr" + id).children("td");
+        precio = parseFloat(val[2].innerText);
+        cantidad = parseInt(val.children('input')[0].value);
+        stock = parseInt($("#pr" + id).children("td")[3].innerText);
+        id = val[0].innerText;
+        if (cantidad <= stock & cantidad != 0) {
+            $("#total").before('<tr id="tdet' + id + '"><td>' + id + '</td><td>' + val[1].innerText + '</td><td><input type="text" name="" id="" value="' + precio + '" onkeydown="caltotal(' + id + ')"/></td><td><input type="text" name="" id="" value="' + cantidad + '"/></td><td>' + (precio * cantidad) + '</td><td><button id="" name="" class="btn btn-xs btn-danger" type="button" onclick="eliminar(' + id + ')"><i class="glyphicon glyphicon-trash"></i></button></td></tr>');
+            stock = stock - cantidad;
+            $("#pr" + id).children("td")[3].innerText = stock;
+            $("#pr" + id).children("td").children('input')[0].value = 0;
+            // det.push([{ "id": id }, { "precio": precio }, { "cant": cantidad }]);
+            det.push([id,precio,cantidad]);
+            caltotal(id);
         } else {
             alert("No tenemos esa cantidad en el Stock, por favor ingresar segun el Stock!!!");
-            $("#pr"+id).children("td").children('input')[0].value=0;
+            $("#pr" + id).children("td").children('input')[0].value = 0;
         }
     }
 </script>
@@ -59,7 +70,8 @@
             </td>
             <td class="pad-no" th:if="${add}">
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary" id="addf" th:onclick="'agregar('+${model.id}+')'"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-primary" id="addf" th:onclick="'agregar('+${model.id}+')'"><i
+                            class="glyphicon glyphicon-plus" aria-hidden="true"></i></button>
                 </div>
             </td>
         </tr>

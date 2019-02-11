@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="form-group col-md-12" id="detalle">
-                                <table id="dtprod" class="table table-bordered table-hover table-striped table-condensed"
+                                <table id="detalleprod" class="table table-bordered table-hover table-striped table-condensed"
                                     style="font-size: 14px">
                                     <thead>
                                         <tr>
@@ -76,23 +76,15 @@
                                         </tr>
                                     </thead>
                                     <tbody id="tdetbody">
-                                        <tr id="igv">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>IGV 18%</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
                                         <tr id="total">
                                             <td></td>
                                             <td></td>
                                             <td></td>
                                             <td>TOTAL</td>
-                                            <td></td>
+                                            <td id="totalsum"></td>
                                             <td></td>
                                         </tr>
-                                        <tr id="">
+                                        <tr>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -133,8 +125,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                        Guardar</button>
+                    <!-- <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        Guardar</button> -->
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-sign-out"
                             aria-hidden="true"></i> Cerrar</button>
                 </div>
