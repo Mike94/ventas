@@ -67,7 +67,7 @@ public class ConfiguracionMVC  implements ApplicationContextAware {
 	@Bean
     public ViewResolver jspViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/vistas/");
+        resolver.setPrefix("/WEB-INF/vistas/reportes/");
         resolver.setSuffix(".html");
         resolver.setOrder(2);
         return resolver;

@@ -14,7 +14,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading"> <span th:text="${editar}"></span> Venta</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" th:object="${factura}" th:action="${url}" method="POST">
+                        <form class="form-horizontal" role="form" th:object="${factura}" th:action="${url}" method="POST" id="factura">
                             <input type="hidden" th:field="*{id}" />
 
                             <div class="form-group col-sm-6">
@@ -80,7 +80,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td>TOTAL</td>
+                                            <td><b>TOTAL</b></td>
                                             <td id="totalsum"></td>
                                             <td></td>
                                         </tr>
@@ -99,7 +99,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="baceptar"></label>
                                 <div class="col-md-8">
-                                    <button id="baceptar" name="" class="btn btn-primary" type="submit">Grabar Venta</button>
+                                    <button id="baceptar" name="" class="btn btn-primary" type="submit" onclick="submitmk()">Grabar Venta</button>
                                     <a th:href="@{'/factura/index'}" class="btn btn-danger">Cancelar</a>
                                 </div>
                             </div>

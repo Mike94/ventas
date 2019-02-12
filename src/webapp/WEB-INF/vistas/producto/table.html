@@ -1,11 +1,11 @@
 <script th:if="${add}">
-    var det = [], mk = [], total=0;
+    var det = [], mk = [], total = 0;
     function caltotal(id) {
-        len=det.length;
+        len = det.length;
         for (let index = 0; index < det.length; index++) {
             precio = det[index][1];
             cant = det[index][2];
-            total=total+precio*cant;
+            total = total + precio * cant;
         }
         $('#totalsum').html(total);
     }
@@ -27,13 +27,27 @@
             stock = stock - cantidad;
             $("#pr" + id).children("td")[3].innerText = stock;
             $("#pr" + id).children("td").children('input')[0].value = 0;
-            // det.push([{ "id": id }, { "precio": precio }, { "cant": cantidad }]);
-            det.push([id,precio,cantidad]);
+            det.push([id, precio, cantidad]);
             caltotal(id);
         } else {
             alert("No tenemos esa cantidad en el Stock, por favor ingresar segun el Stock!!!");
             $("#pr" + id).children("td").children('input')[0].value = 0;
         }
+    }
+    function submitmk() {
+            event.preventDefault();
+            id=parseInt($('#id').val());
+            cliente_id=parseInt($('#cbocliente').val());
+            documento_id=parseInt($('#cbodocumento').val());
+            $.ajax({
+                url: $('#factura').attr('action'),
+                type: $('#factura').attr('method'),
+                dataType: 'json',
+                data: { id: id, cliente_id: cliente_id, documento_id:documento_id, det:det},
+            }).done(function (response) {
+                console.log("Respuesta");
+            }).fail(function (e) {
+            });
     }
 </script>
 <table id="dtprod" class="table table-bordered table-hover table-striped table-condensed" style="font-size: 14px">
